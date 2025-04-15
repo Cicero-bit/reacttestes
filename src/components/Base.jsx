@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 
-//form
-import { FaPlus } from 'react-icons/fa'
-
-
-//form
-import { FaEdit, FaWindowClose } from 'react-icons/fa'
-
+import Form from "./Form";
+import Task from "./tasks"
 
 import "./Base.css";
 
@@ -87,24 +82,16 @@ export default class Main extends Component {
     return(
       <div className="main">
         <h1>Todo List</h1>
-        <form onSubmit={this.handleSubmit} action="#" className="form">
-          <input onChange={this.handleChange} type="text" value={newTask} />
-          <button type="submit">
-            <FaPlus></FaPlus>
-          </button>
-        </form>
-        <ul className="tasks">
-          {tasks.map((tasks, index) => (
-            <li
-            key={tasks}>
-              {tasks}
-              <span>
-              <FaEdit onClick={(e) => this.handleEdit(e, index)} className="edit"></FaEdit>
-              <FaWindowClose onClick={(e) => this.handleDelete(e, index)} className="delete"></FaWindowClose>
-              </span>
-              </li>
-          ))}
-        </ul>
+        <Form
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          newTask={newTask}
+        />
+        <Task
+          handleEdit={this.handleEdit}
+          handleDelete={this.handleDelete}
+          tasks={tasks}
+        />
       </div>
       );
   }
